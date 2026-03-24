@@ -1,0 +1,89 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: guestbook-ui
+  namespace: default
+spec:
+  gatewayClassName: traefik
+  listeners:
+    - name: web
+      hostname: k3s-local.test
+      port: 8000
+      protocol: HTTP
+
+    - name: websecure
+      hostname: k3s-local.test
+      port: 8443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: app-tls
+
+---
+
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: guestbook-ui
+  namespace: default
+spec:
+  parentRefs:
+    - name: guestbook-ui
+      namespace: default
+  hostnames:
+    - k3s-local.test
+  rules:
+    # Regular HTTP traffic
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: guestbook-ui
+          port: 80
+      
+      filters:
+        - type: ResponseHeaderModifier
+          responseHeaderModifier:
+            add:
+              - name: strict-transport-security
+                value: max-age=2592000; includeSubDomains
+
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: guestbook-ui
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: guestbook-ui
+  template:
+    metadata:
+      labels:
+        app: guestbook-ui
+    spec:
+      containers:
+        - image: gcr.io/google-samples/gb-frontend:v5
+          name: guestbook-ui
+          ports:
+            - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: guestbook-ui
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: guestbook-ui
