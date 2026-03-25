@@ -11,8 +11,6 @@ spec:
   sources:
     - repoURL: https://charts.longhorn.io
       chart: longhorn
-      releaseName: longhorn
-      namespace: longhorn-system
       targetRevision: 1.11.1
       helm:
         releaseName: longhorn
