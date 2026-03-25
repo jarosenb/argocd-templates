@@ -8,10 +8,21 @@ spec:
     namespace: longhorn-system
     server: https://kubernetes.default.svc
   project: default
-  source:
-    path: longhorn
-    repoURL: https://github.com/jarosenb/argocd-templates.git
-    targetRevision: HEAD
+  sources:
+    - repoURL: https://charts.longhorn.io
+      chart: longhorn
+      version: 1.11.1
+      releaseName: longhorn
+      namespace: longhorn-system
+      valuesInline:
+        defaultSettings:
+          defaultReplicaCount: 1
+        persistence:
+          defaultClass: true
+
+    - path: longhorn
+      repoURL: https://github.com/jarosenb/argocd-templates.git
+      targetRevision: HEAD
   syncPolicy:
     automated:
       prune: true
