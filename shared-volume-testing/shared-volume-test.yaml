@@ -22,62 +22,52 @@ spec:
       storage: 1Gi
 
 ---
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: volume-test
   namespace: default
 spec:
-  restartPolicy: Always
-  containers:
-    - name: volume-test
-      image: nginx:stable-alpine
-      imagePullPolicy: IfNotPresent
-      livenessProbe:
-        exec:
-          command:
-            - ls
-            - /data/lost+found
-        initialDelaySeconds: 5
-        periodSeconds: 5
-      volumeMounts:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: volume-test
+  template:
+    metadata:
+      labels:
+        app: volume-test
+    spec:
+      containers:
+        - name: volume-test
+          image: nginx:stable-alpine
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            exec:
+              command:
+                - ls
+                - /data/lost+found
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          volumeMounts:
+            - name: volv
+              mountPath: /data
+          ports:
+            - containerPort: 80
+      volumes:
         - name: volv
-          mountPath: /data
-      ports:
-        - containerPort: 80
-      envFrom:
-        - secretRef:
-            name: test-secret
-  volumes:
-    - name: volv
-      persistentVolumeClaim:
-        claimName: longhorn-volv-pvc
+          persistentVolumeClaim:
+            claimName: longhorn-volv-pvc
 
 ---
 apiVersion: v1
-kind: Pod
+kind: Service
 metadata:
-  name: volume-test2
+  name: volume-test
   namespace: default
 spec:
-  restartPolicy: Always
-  containers:
-    - name: volume-test2
-      image: nginx:stable-alpine
-      imagePullPolicy: IfNotPresent
-      livenessProbe:
-        exec:
-          command:
-            - ls
-            - /data/lost+found
-        initialDelaySeconds: 5
-        periodSeconds: 5
-      volumeMounts:
-        - name: volv
-          mountPath: /data
-      ports:
-        - containerPort: 80
-  volumes:
-    - name: volv
-      persistentVolumeClaim:
-        claimName: longhorn-volv-pvc
+  selector:
+    app: volume-test
+  ports:
+    - port: 80
+      targetPort: 80
+  type: ClusterIP
