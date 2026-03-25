@@ -70,7 +70,7 @@ spec:
         app: guestbook-ui
     spec:
       containers:
-        - image: gcr.io/google-samples/gb-frontend:v5
+        - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           name: guestbook-ui
           ports:
             - containerPort: 80

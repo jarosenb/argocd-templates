@@ -1,0 +1,17 @@
+replicaCount: 1
+
+image:
+  repository: gcr.io/google-samples/gb-frontend
+  tag: v5
+  pullPolicy: IfNotPresent
+
+service:
+  port: 80
+
+gateway:
+  hostname: k3s-local.test
+  httpPort: 8000
+  httpsPort: 8443
+  tlsSecretName: app-tls
+
+resources: {}
