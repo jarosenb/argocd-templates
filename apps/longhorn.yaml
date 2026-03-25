@@ -11,14 +11,16 @@ spec:
   sources:
     - repoURL: https://charts.longhorn.io
       chart: longhorn
-      version: 1.11.1
       releaseName: longhorn
       namespace: longhorn-system
-      valuesInline:
-        defaultSettings:
-          defaultReplicaCount: 1
-        persistence:
-          defaultClass: true
+      targetRevision: 1.11.1
+      helm:
+        releaseName: longhorn
+        values: |
+          defaultSettings:
+            defaultReplicaCount: 1
+          persistence:
+            defaultClass: true
 
     - path: longhorn
       repoURL: https://github.com/jarosenb/argocd-templates.git
