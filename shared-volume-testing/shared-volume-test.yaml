@@ -53,6 +53,9 @@ spec:
               mountPath: /data
           ports:
             - containerPort: 80
+          envFrom:
+          - secretRef:
+              name: test-secret
       volumes:
         - name: volv
           persistentVolumeClaim:
