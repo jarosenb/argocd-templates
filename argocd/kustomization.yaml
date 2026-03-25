@@ -1,0 +1,3 @@
+resources:
+  - github.com/argoproj/argo-cd/manifests/cluster-install?ref=v3.3.5
+  - argocd-gateway.yaml

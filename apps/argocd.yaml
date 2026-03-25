@@ -5,13 +5,10 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  sources:
-    - repoURL: https://github.com/argoproj/argo-cd
-      path: manifests/cluster-install
-      targetRevision: v3.3.5
-    - path: argocd
-      repoURL: https://github.com/jarosenb/argocd-templates.git
-      targetRevision: HEAD
+  source:
+    path: argocd
+    repoURL: https://github.com/jarosenb/argocd-templates.git
+    targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
