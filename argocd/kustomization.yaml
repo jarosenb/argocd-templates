@@ -1,3 +1,10 @@
 resources:
   - github.com/argoproj/argo-cd/manifests/cluster-install?ref=v3.3.5
   - argocd-gateway.yaml
+
+patches:
+  - path: argocd-cm-patch.yaml
+    target:
+      kind: ConfigMap
+      name: argocd-cm
+      namespace: argocd
