@@ -24,6 +24,7 @@ spec:
             - configMapRef:
                 name: core-cm
 
+---
 
 apiVersion: v1
 kind: ConfigMap
