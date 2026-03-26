@@ -22,7 +22,7 @@ spec:
 
           envFrom:
             - configMapRef:
-                name: {{ include "argo-helm-core.fullname" . }}-config
+                name: core-cm
 
 
 apiVersion: v1
