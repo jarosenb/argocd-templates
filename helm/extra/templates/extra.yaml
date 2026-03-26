@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: extra-nginx
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: extra-nginx
+  template:
+    metadata:
+      labels:
+        app: extra-nginx
+    spec:
+      containers:
+        - name: core-nginx
+          image: nginx:stable-alpine
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80

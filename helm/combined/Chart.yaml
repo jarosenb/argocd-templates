@@ -1,0 +1,14 @@
+apiVersion: v2
+name: argo-helm-combined
+description: Core helm chart
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+
+dependencies:
+  - name: argo-helm-core
+    repository: file://../core
+    version: 0.1.0
+  - name: argo-helm-extra
+    repository: file://../extra
+    version: 0.1.0
