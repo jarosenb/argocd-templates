@@ -7,3 +7,7 @@ patches:
     target:
       kind: ConfigMap
       name: argocd-cm
+  - path: argocd-rbac-patch.yaml
+    target:
+      kind: ConfigMap
+      name: argocd-rbac-cm
