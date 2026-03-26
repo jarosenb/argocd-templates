@@ -12,3 +12,7 @@ spec:
     path: env-config-testing
     repoURL: https://github.com/jarosenb/argocd-templates.git
     targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      enabled: true
