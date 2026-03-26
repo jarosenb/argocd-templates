@@ -19,3 +19,19 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
+
+          envFrom:
+            - configMapRef:
+                name: {{ include "argo-helm-core.fullname" . }}-config
+
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "argo-helm-core.fullname" . }}-config
+data:
+{{- range $key, $value := .Values.appConfig }}
+  {{ $key }}: {{ $value | quote }}
+{{- end }}
+
+
