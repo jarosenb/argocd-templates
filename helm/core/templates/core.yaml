@@ -28,7 +28,7 @@ spec:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "argo-helm-core.fullname" . }}-config
+  name: core-cm
 data:
 {{- range $key, $value := .Values.appConfig }}
   {{ $key }}: {{ $value | quote }}
