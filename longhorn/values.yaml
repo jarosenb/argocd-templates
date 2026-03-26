@@ -1,0 +1,5 @@
+longhorn:
+  defaultSettings:
+    defaultReplicaCount: 1
+  persistence:
+    defaultClass: true
