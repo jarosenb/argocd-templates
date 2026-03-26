@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: argocd-cmd-params-cm
 data:
-  server.insecure: 'true'
-
+  server.insecure: "true"
+  server.listen.address: "0.0.0.0"
