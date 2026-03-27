@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: env-configured-nginx
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: core-nginx
+  template:
+    metadata:
+      labels:
+        app: core-nginx
+    spec:
+      containers:
+        - name: core-nginx
+          image: nginx:stable-alpine
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+
+          envFrom:
+            - configMapRef:
+                name: env-cm
