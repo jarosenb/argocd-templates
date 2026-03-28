@@ -9,7 +9,7 @@ spec:
         - name: core-nginx
           volumeMounts:
             - name: conf-file-volume
-              mountPath: /etc/nginx/conf.d/testconf.conf
+              mountPath: /etc/nginx/extfiles/testconf.conf
               subPath: testconf.conf
       volumes:
         - name: conf-file-volume
