@@ -6,8 +6,13 @@ resources:
 
 namePrefix: envconftest-
 
+patches:
+  - path: config-patch.yaml
+
 configMapGenerator:
   - name: env-cm
     envs:
       - conf.env
-  
+  - name: conf-file-cm
+    files:
+      - testconf.conf
