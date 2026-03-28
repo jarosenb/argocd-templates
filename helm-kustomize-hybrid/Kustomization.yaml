@@ -1,0 +1,7 @@
+helmCharts:
+  - name: core
+    path: ../helm/core
+    releaseName: argo-helm-core
+  - name: extra
+    path: ../helm/extra
+    releaseName: argo-helm-extra
