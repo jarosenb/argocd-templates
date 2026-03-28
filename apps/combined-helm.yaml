@@ -12,3 +12,5 @@ spec:
     path: helm-kustomize-hybrid
     repoURL: https://github.com/jarosenb/argocd-templates.git
     targetRevision: HEAD
+    kustomize:
+      enableHelm: true
