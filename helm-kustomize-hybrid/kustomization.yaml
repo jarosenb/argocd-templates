@@ -3,9 +3,9 @@ kind: Kustomization
 
 helmCharts:
   - name: core
-    path: ../helm/core
+    repo: file://../helm/core
     releaseName: argo-helm-core
 
   - name: extra
-    path: ../helm/extra
+    repo: file://../helm/extra
     releaseName: argo-helm-extra
