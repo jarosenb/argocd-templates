@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: argocd-cm
 data:
-  kustomize.buildOptions: "--enable-helm"
+  kustomize.buildOptions: "--enable-helm --load-restrictor=LoadRestrictionsNone"
   url: https://argocd.k3s-local.test:8443
   dex.config: |
     connectors:
