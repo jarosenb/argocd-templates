@@ -9,6 +9,6 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: argocd-local-helm
+    path: kustomize-local-helm
     repoURL: https://github.com/jarosenb/argocd-templates.git
     targetRevision: HEAD
