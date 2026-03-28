@@ -9,6 +9,10 @@ namePrefix: envconftest-
 patches:
   - path: config-patch.yaml
 
+images:
+  - name: nginx
+    newTag: 1.29.7-alpine
+
 configMapGenerator:
   - name: env-cm
     envs:
