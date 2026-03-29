@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kustomize-local-helm
+  namespace: argocd
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: kustomize-with-components
+    repoURL: https://github.com/jarosenb/argocd-templates.git
+    targetRevision: HEAD

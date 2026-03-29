@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: componentized-nginx
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: componentized-nginx
+  template:
+    metadata:
+      labels:
+        app: componentized-nginx
+    spec:
+      containers: []

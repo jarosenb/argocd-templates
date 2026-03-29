@@ -1,0 +1,8 @@
+namePrefix: componentized-app
+
+resources:
+  - base/deployment.yaml
+
+components:
+  - components/core/patch.yaml
+  - components/extra/patch.yaml

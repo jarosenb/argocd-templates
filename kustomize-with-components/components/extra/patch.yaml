@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: componentized-nginx 
+spec:
+  template:
+    spec:
+      containers:
+        - name: extra-nginx
+          image: nginx:stable-alpine
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
