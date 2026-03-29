@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: applicationset-config-testing
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - list:
+        elements:
+          - name: kustomize-with-components
+            path: kustomize-with-components
+
+          - name: kustomize-local-helm
+            path: kustomize-local-helm
+  template:
+    metadata:
+      name: "{{.name}}"
+      namespace: argocd
+    spec:
+      project: my-project
+      source:
+        repoURL: https://github.com/jarosenb/argocd-templates.git
+        targetRevision: HEAD
+        path: "{{.path}}"
+      destination:
+        namespace: default
+        server: https://kubernetes.default.svc
