@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kustomize-local-helm
+  name: kustomize-with-components
   namespace: argocd
 spec:
   destination:
