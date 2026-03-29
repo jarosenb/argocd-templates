@@ -1,5 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
+metadata:
+  name: componentized-nginx
 spec:
   template:
     spec:
@@ -16,14 +18,6 @@ spec:
 
             - name: nginx-shared-data
               mountPath: /etc/nginx/shared-data
-
-          resources:
-            requests:
-              cpu: 25m
-              memory: 64Mi
-            limits:
-              cpu: 100m
-              memory: 128Mi
       volumes:
         - name: extra-nginx-conf
           configMap:
