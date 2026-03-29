@@ -14,6 +14,15 @@ spec:
 
           - name: kustomize-local-helm
             path: kustomize-local-helm
+
+          - name: shared-volume-testing
+          - path: shared-volume-testing
+
+          - name: env-config-testing
+          - path: env-config-testing
+
+          - name: helloworld
+          - path: helloworld
   template:
     metadata:
       name: "{{.name}}"
