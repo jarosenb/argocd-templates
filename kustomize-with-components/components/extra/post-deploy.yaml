@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: post-deploy-migrate
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  backoffLimit: 3
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: migrate
+          image: nginx:stable-alpine
+          command:
+            - touch
+            - /etc/nginx/shared-data/postdeploy.txt
+          volumeMounts:
+            - name: nginx-shared-data
+              mountPath: /etc/nginx/shared-data
