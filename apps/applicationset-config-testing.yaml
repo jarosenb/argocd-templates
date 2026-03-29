@@ -31,7 +31,7 @@ spec:
       project: test-apps
       source:
         repoURL: https://github.com/jarosenb/argocd-templates.git
-        targetRevision: "{{ default 'HEAD' .release}}"
+        targetRevision: '{{ default "HEAD" .release}}'
         path: "{{.path}}"
       destination:
         namespace: default
