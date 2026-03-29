@@ -18,7 +18,7 @@ spec:
       name: "{{.name}}"
       namespace: argocd
     spec:
-      project: my-project
+      project: default
       source:
         repoURL: https://github.com/jarosenb/argocd-templates.git
         targetRevision: HEAD
