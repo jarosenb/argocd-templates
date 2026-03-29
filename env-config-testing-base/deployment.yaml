@@ -19,7 +19,13 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 80
-
           envFrom:
             - configMapRef:
                 name: env-cm
+          resources:
+            requests:
+              cpu: 25m
+              memory: 64Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
