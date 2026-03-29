@@ -14,3 +14,6 @@ spec:
         app: componentized-nginx
     spec:
       containers: []
+      volumes:
+        - name: nginx-shared-data
+          emptyDir: {}
