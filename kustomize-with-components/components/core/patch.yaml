@@ -8,7 +8,7 @@ spec:
       containers:
         - name: core-nginx
           image: nginx:stable-alpine
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
               

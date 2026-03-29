@@ -8,7 +8,7 @@ spec:
       containers:
         - name: extra-nginx
           image: nginx:stable-alpine
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 8081
           volumeMounts:

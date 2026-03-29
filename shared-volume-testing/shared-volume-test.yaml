@@ -40,7 +40,7 @@ spec:
       containers:
         - name: volume-test
           image: nginx:stable-alpine
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           livenessProbe:
             exec:
               command:
