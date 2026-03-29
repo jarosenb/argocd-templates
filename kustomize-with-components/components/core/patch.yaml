@@ -11,4 +11,10 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 80
+          volumeMounts:
+            - name: nginx-shared-data
+              mountPath: /etc/nginx/shared-data
+      volumes:
+        - name: nginx-shared-data
+          emptyDir: {}
               
