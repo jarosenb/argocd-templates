@@ -32,6 +32,12 @@ spec:
         repoURL: https://github.com/jarosenb/argocd-templates.git
         targetRevision: '{{ default "HEAD" .release}}'
         path: "{{.path}}"
+        kustomize:
+          namePrefix: "{{.name}}"
+          configMapGenerator:
+            - name: app-name-config
+              literals:
+                - ARGOCD_APP_NAME={{.name}}
       destination:
         namespace: default
         server: https://kubernetes.default.svc
