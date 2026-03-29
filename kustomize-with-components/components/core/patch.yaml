@@ -16,7 +16,7 @@ spec:
               mountPath: /etc/nginx/shared-data
 
       initContainers:
-        - name: core-nginx
+        - name: init-core-nginx
           image: nginx:stable-alpine
           imagePullPolicy: Always
           command: ['touch', '/etc/nginx/shared-data/initfile.txt']
