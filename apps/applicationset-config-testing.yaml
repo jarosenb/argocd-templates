@@ -34,10 +34,8 @@ spec:
         path: "{{.path}}"
         kustomize:
           namePrefix: "{{.name}}"
-          configMapGenerator:
-            - name: app-name-config
-              literals:
-                - ARGOCD_APP_NAME={{.name}}
+          commonAnnotations:
+            - argocd-app-name: "{{.name}}"
       destination:
         namespace: default
         server: https://kubernetes.default.svc
