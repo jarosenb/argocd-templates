@@ -7,7 +7,7 @@ spec:
   destination:
     namespace: longhorn-system
     server: https://kubernetes.default.svc
-  project: default
+  project: platform-infrastructure
   source:
     path: longhorn
     repoURL: https://github.com/jarosenb/argocd-templates.git

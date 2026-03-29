@@ -4,7 +4,7 @@ metadata:
   name: argocd
   namespace: argocd
 spec:
-  project: default
+  project: platform-infrastructure
   source:
     path: argocd
     repoURL: https://github.com/jarosenb/argocd-templates.git
