@@ -17,8 +17,3 @@ spec:
       volumes:
         - name: nginx-shared-data
           emptyDir: {}
-      env:
-        - name: ARGOCD_APP_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.annotations['argocd-app-name']
