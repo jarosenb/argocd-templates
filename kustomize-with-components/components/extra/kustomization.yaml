@@ -6,3 +6,8 @@ patches:
     target:
       kind: Deployment
       name: componentized-nginx
+
+configMapGenerator:
+  - name: extra-conf-file-cm
+    files:
+      - default.conf

@@ -11,3 +11,11 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 81
+          volumeMounts:
+            - name: extra-nginx-conf
+              mountPath: /etc/nginx/conf.d/default.conf
+              subPath: default.conf
+      volumes:
+        - name: extra-nginx-conf
+          configMap:
+            name: extra-conf-file-cm
