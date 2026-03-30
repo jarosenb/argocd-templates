@@ -19,6 +19,9 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.annotations['argocd-app-name']
+          envFrom:
+            - secretRef:
+                name: testsecret01
 
       initContainers:
         - name: init-core-nginx
