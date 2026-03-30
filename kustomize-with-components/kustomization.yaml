@@ -2,6 +2,7 @@ namePrefix: componentized-app
 
 resources:
   - base/deployment.yaml
+  - secrets
 
 components:
   - components/core
