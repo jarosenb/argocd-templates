@@ -19,9 +19,6 @@ spec:
 
           - name: env-config-testing
             path: env-config-testing
-
-          - name: helloworld
-            path: helloworld
   template:
     metadata:
       name: "{{.name}}"
