@@ -11,6 +11,7 @@ spec:
     chart: sealed-secrets
     targetRevision: 2.18.4 # check latest version
     helm:
+      skipCrds: true
       values: |
         rbac:
           clusterRole: false
