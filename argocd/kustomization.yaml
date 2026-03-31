@@ -1,7 +1,7 @@
 namespace: argocd
 
 resources:
-  - https://raw.githubusercontent.com/argoproj/argo-cd/v3.3.5/manifests/namespace-install.yaml
+  - github.com/argoproj/argo-cd/manifests/cluster-install?ref=v3.3.5
   - argocd-gateway.yaml
 
 patches:
