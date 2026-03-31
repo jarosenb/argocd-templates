@@ -12,11 +12,14 @@ spec:
     targetRevision: 2.2.9
     helm:
       releaseName: reloader
+      parameters:
+        - name: watchGlobally
+          value: "false"
 
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: reloader # or sealed-secrets
+    namespace: default # or sealed-secrets
 
   syncPolicy:
     syncOptions:
