@@ -13,7 +13,7 @@ spec:
     helm:
       releaseName: reloader
       parameters:
-        - name: watchGlobally
+        - name: reloader.watchGlobally
           value: "false"
 
 
