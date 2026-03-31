@@ -4,7 +4,7 @@ metadata:
   name: componentized-nginx
   namespace: default
   annotations:
-  reloader.stakater.com/auto: "true"
+    reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
   selector:
