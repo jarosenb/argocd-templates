@@ -27,7 +27,10 @@ spec:
         - name: init-core-nginx
           image: nginx:stable-alpine
           imagePullPolicy: Always
-          command: ['touch', '/etc/nginx/shared-data/initfile.txt']
+          command: ["/bin/sh", "-c", 'echo "$FOO" > /etc/nginx/shared-data/initfile.txt']
           volumeMounts:
             - name: nginx-shared-data
               mountPath: /etc/nginx/shared-data
+          envFrom:
+            - secretRef:
+                name: testsecret01
