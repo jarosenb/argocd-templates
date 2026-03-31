@@ -17,3 +17,7 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: reloader # or sealed-secrets
+
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
