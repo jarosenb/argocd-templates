@@ -30,9 +30,9 @@ spec:
         targetRevision: '{{ default "HEAD" .release}}'
         path: "{{.path}}"
         kustomize:
-          namePrefix: "{{.name}}"
+          namePrefix: "{{.name}}-"
           commonAnnotations:
-            argocd-app-name: "{{.name}}"
+            argocd-app-name: "{{.name}}-"
       destination:
         namespace: default
         server: https://kubernetes.default.svc
