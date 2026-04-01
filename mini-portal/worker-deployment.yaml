@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose -f docker-compose.yaml convert -o kompose
+    kompose.version: 1.38.0 (HEAD)
+  labels:
+    io.kompose.service: worker
+  name: worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: worker
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose -f docker-compose.yaml convert -o kompose
+        kompose.version: 1.38.0 (HEAD)
+      labels:
+        io.kompose.service: worker
+    spec:
+      containers:
+        - args:
+            - uv
+            - run
+            - celery
+            - -A
+            - webapp
+            - worker
+            - -l
+            - INFO
+          image: jarosenb/k3s-test-django
+          name: worker
+          volumeMounts:
+            - mountPath: /srv/www/static
+              name: staticfiles
+      restartPolicy: Always
+      volumes:
+        - name: staticfiles
+          persistentVolumeClaim:
+            claimName: staticfiles

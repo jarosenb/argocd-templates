@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose -f docker-compose.yaml convert -o kompose
+    kompose.version: 1.38.0 (HEAD)
+  labels:
+    io.kompose.service: weba
+  name: webapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: webapp
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose -f docker-compose.yaml convert -o kompose
+        kompose.version: 1.38.0 (HEAD)
+      labels:
+        io.kompose.service: webapp
+    spec:
+      containers:
+        - image: jarosenb/k3s-test-django
+          name: webapp
+          volumeMounts:
+            - mountPath: /srv/www/static
+              name: staticfiles
+
+        - image: nginx:alpine
+          env:
+            - name: PROXY_PASS_HOST
+              value: "0.0.0.0"
+
+          name: nginx
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /etc/nginx/nginx.conf
+              name: nginx-cm0
+              subPath: nginx.conf
+            - mountPath: /etc/nginx/templates/default.conf.template
+              name: nginx-cm1
+              subPath: default.conf.template
+            - mountPath: /srv/www/static
+              name: staticfiles
+
+      restartPolicy: Always
+      volumes:
+        - name: staticfiles
+          persistentVolumeClaim:
+            claimName: staticfiles
+
+        - configMap:
+            items:
+              - key: nginx.conf
+                path: nginx.conf
+            name: nginx-cm0
+          name: nginx-cm0
+
+        - configMap:
+            items:
+              - key: default.conf.template
+                path: default.conf.template
+            name: nginx-cm1
+          name: nginx-cm1
+
