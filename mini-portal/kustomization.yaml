@@ -6,3 +6,7 @@ components:
   - components/worker
   - components/postgres
   - components/redis
+
+namePrefix: miniportal-
+commonAnnotations:
+  - argocd-app-prefix: miniportal-

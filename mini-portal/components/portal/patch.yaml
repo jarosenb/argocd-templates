@@ -11,6 +11,11 @@ spec:
           volumeMounts:
             - mountPath: /srv/www/static
               name: staticfiles
+          env:
+            - name: ARGOCD_APP_PREFIX
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.annotations['argocd-app-prefix']
       volumes:
         - name: staticfiles
           persistentVolumeClaim:
