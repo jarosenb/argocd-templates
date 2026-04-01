@@ -29,26 +29,35 @@ metadata:
   name: argocd-server
   namespace: argocd
 spec:
-  parentRefs:
-    - name: argocd-gateway
-      namespace: argocd
   hostnames:
     - argocd.k3s-local.test
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: argocd-gateway
+      namespace: argocd
   rules:
-    # gRPC traffic (higher priority via more specific match)
-    - matches:
+    - backendRefs:
+        - group: ""
+          kind: Service
+          name: argocd-server
+          port: 80
+          weight: 1
+      matches:
         - headers:
             - name: Content-Type
+              type: Exact
               value: application/grpc
-      backendRefs:
-        - name: argocd-server
+          path:
+            type: PathPrefix
+            value: /
+    - backendRefs:
+        - group: ""
+          kind: Service
+          name: argocd-server
           port: 80
-
-    # Regular HTTP traffic
-    - matches:
+          weight: 1
+      matches:
         - path:
             type: PathPrefix
             value: /
-      backendRefs:
-        - name: argocd-server
-          port: 80
