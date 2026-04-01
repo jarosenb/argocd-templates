@@ -17,8 +17,6 @@ spec:
   selector:
     matchLabels:
       io.kompose.service: webapp
-  strategy:
-    type: Recreate
   template:
     metadata:
       annotations:
