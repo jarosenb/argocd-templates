@@ -13,7 +13,8 @@ spec:
     matchLabels:
       io.kompose.service: worker
   strategy:
-    type: Recreate
+    type: RollingUpdate
+    terminationGracePeriodSeconds: 600
   template:
     metadata:
       annotations:
@@ -34,6 +35,7 @@ spec:
             - INFO
           image: jarosenb/k3s-test-django
           name: worker
+          imagePullPolicy: Always
           env:
             - name: ARGOCD_APP_PREFIX
               valueFrom:
