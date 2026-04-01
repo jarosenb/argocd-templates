@@ -5,8 +5,36 @@ metadata:
 spec:
   template:
     spec:
+      initContainers:
+        - image: jarosenb/k3s-test-django
+          imagePullPolicy: Always
+          name: webapp
+          command: ["uv", "run", "python", "manage.py", "migrate"]
+          volumeMounts:
+            - mountPath: /srv/www/static
+              name: staticfiles
+          env:
+            - name: ARGOCD_APP_PREFIX
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.annotations['argocd-app-prefix']
+
+        - image: jarosenb/k3s-test-django
+          imagePullPolicy: Always
+          name: webapp
+          command: ["uv", "run", "python", "manage.py", "collectstatic"]
+          volumeMounts:
+            - mountPath: /srv/www/static
+              name: staticfiles
+          env:
+            - name: ARGOCD_APP_PREFIX
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.annotations['argocd-app-prefix']
+
       containers:
         - image: jarosenb/k3s-test-django
+          imagePullPolicy: Always
           name: webapp
           volumeMounts:
             - mountPath: /srv/www/static
