@@ -21,7 +21,7 @@ spec:
                   fieldPath: metadata.annotations['argocd-app-name']
           envFrom:
             - secretRef:
-                name: testsecret01
+                name: testsecret
 
       initContainers:
         - name: init-core-nginx
@@ -33,4 +33,4 @@ spec:
               mountPath: /etc/nginx/shared-data
           envFrom:
             - secretRef:
-                name: testsecret01
+                name: testsecret
