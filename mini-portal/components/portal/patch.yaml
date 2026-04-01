@@ -22,7 +22,8 @@ spec:
         - image: jarosenb/k3s-test-django
           imagePullPolicy: Always
           name: webapp-collectstatic
-          command: ["uv", "run", "python", "manage.py", "collectstatic"]
+          command:
+            ["uv", "run", "python", "manage.py", "collectstatic", "--noinput"]
           volumeMounts:
             - mountPath: /srv/www/static
               name: staticfiles
