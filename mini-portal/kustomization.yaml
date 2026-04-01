@@ -9,4 +9,6 @@ components:
 
 namePrefix: miniportal-
 commonAnnotations:
-  - argocd-app-prefix: miniportal-
+  argocd-app-prefix: miniportal-
+commonLabels:
+  argocd-app-name: miniportal
