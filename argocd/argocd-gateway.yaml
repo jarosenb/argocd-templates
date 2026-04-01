@@ -52,10 +52,3 @@ spec:
       backendRefs:
         - name: argocd-server
           port: 80
-
-      filters:
-        - type: ResponseHeaderModifier
-          responseHeaderModifier:
-            add:
-              - name: strict-transport-security
-                value: max-age=2592000; includeSubDomains
