@@ -1,0 +1,3 @@
+resources:
+  - staticfiles-persistentvolumeclaim.yaml
+  - webapp-deployment.yaml

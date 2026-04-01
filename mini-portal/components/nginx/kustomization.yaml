@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1alpha1
+kind: Component
+
+resources:
+  - nginx-service.yaml
+
+configMapGenerator:
+  - name: nginx-conf-cm
+    files:
+      - default.conf.template
+      - nginx.conf
+
+patches:
+  - path: patch.yaml
+    target:
+      kind: Deployment
+      name: webapp

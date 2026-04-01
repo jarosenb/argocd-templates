@@ -67,4 +67,3 @@ spec:
                 path: default.conf.template
             name: nginx-cm1
           name: nginx-cm1
-

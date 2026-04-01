@@ -1,0 +1,8 @@
+resources:
+  - overlays/web
+components:
+  - components/nginx
+  - components/portal
+  - components/worker
+  - components/postgres
+  - components/redis

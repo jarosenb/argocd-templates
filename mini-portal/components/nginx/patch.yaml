@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+spec:
+  template:
+    spec:
+      containers:
+        - name: nginx
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /etc/nginx/nginx.conf
+              name: nginx-conf-cm
+              subPath: nginx.conf
+            - mountPath: /etc/nginx/templates/default.conf.template
+              name: nginx-conf-cm
+              subPath: default.conf.template
+            - mountPath: /srv/www/static
+              name: staticfiles
+      volumes:
+        - name: staticfiles
+          persistentVolumeClaim:
+            claimName: staticfiles
+        - configMap:
+            items:
+              - key: nginx.conf
+                path: nginx.conf
+              - key: default.conf.template
+                path: default.conf.template
+            name: nginx-conf-cm
+          name: nginx-conf-cm

@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+spec:
+  template:
+    spec:
+      containers:
+        - image: jarosenb/k3s-test-django
+          name: webapp
+          volumeMounts:
+            - mountPath: /srv/www/static
+              name: staticfiles
+      volumes:
+        - name: staticfiles
+          persistentVolumeClaim:
+            claimName: staticfiles
