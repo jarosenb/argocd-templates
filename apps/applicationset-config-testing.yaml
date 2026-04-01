@@ -27,7 +27,7 @@ spec:
       project: default
       source:
         repoURL: https://github.com/jarosenb/argocd-templates.git
-        targetRevision: '{{ default "HEAD" .release}}'
+        targetRevision: '{{ default "no-namespace" .release}}'
         path: "{{.path}}"
         kustomize:
           namePrefix: "{{.name}}-"

@@ -11,4 +11,4 @@ spec:
   source:
     path: helloworld
     repoURL: https://github.com/jarosenb/argocd-templates.git
-    targetRevision: HEAD
+    targetRevision: no-namespace

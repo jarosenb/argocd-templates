@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/jarosenb/argocd-templates.git
     path: apps
-    targetRevision: HEAD
+    targetRevision: no-namespace
   destination:
     server: https://kubernetes.default.svc
     namespace: default
