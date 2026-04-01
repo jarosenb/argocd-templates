@@ -8,7 +8,7 @@ spec:
       initContainers:
         - image: jarosenb/k3s-test-django
           imagePullPolicy: Always
-          name: webapp
+          name: webapp-migrate
           command: ["uv", "run", "python", "manage.py", "migrate"]
           volumeMounts:
             - mountPath: /srv/www/static
@@ -21,7 +21,7 @@ spec:
 
         - image: jarosenb/k3s-test-django
           imagePullPolicy: Always
-          name: webapp
+          name: webapp-collectstatic
           command: ["uv", "run", "python", "manage.py", "collectstatic"]
           volumeMounts:
             - mountPath: /srv/www/static
