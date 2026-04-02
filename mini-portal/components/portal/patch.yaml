@@ -36,8 +36,8 @@ spec:
             - name: RABBITMQ_DEFAULT_USER
               valueFrom:
                 secretKeyRef:
-                  - name: portal-secret-env
-                    key: RABBITMQ_DEFAULT_USER
+                  name: portal-secret-env
+                  key: RABBITMQ_DEFAULT_USER
 
       containers:
         - image: jarosenb/k3s-test-django
