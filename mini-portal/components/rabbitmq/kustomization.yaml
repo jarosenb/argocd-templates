@@ -1,0 +1,4 @@
+resources:
+  - rabbitmq-data-persistentvolumeclaim.yaml
+  - rabbitmq-service.yaml
+  - rabbitmq-deployment.yaml
