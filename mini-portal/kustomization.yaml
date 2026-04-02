@@ -1,6 +1,9 @@
 resources:
   - overlays/web
   - sealed-portal-secret-env.yaml
+  - tls-secret.yaml
+  - gateway-router.yaml
+
 components:
   - components/nginx
   - components/portal
