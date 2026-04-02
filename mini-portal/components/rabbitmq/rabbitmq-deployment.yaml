@@ -45,7 +45,7 @@ spec:
                 secretKeyRef:
                   name: portal-secret-env
                   key: RABBITMQ_DEFAULT_VHOST
-          restartPolicy: Always
+      restartPolicy: Always
       volumes:
         - name: rabbitmq-data
           persistentVolumeClaim:
