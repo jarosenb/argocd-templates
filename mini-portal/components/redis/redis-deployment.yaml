@@ -24,8 +24,8 @@ spec:
         - image: redis:8.6
           name: redis
           args:
-            - --appendonly
-            - "yes"
+            - --save
+            - "60 1"
             - --requirepass
             - $(REDIS_PASSWORD)
           ports:
