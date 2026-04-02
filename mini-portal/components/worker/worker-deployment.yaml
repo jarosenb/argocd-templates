@@ -41,6 +41,9 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.annotations['argocd-app-prefix']
+          envFrom:
+            - secretRef:
+                name: portal-secret-env
           volumeMounts:
             - mountPath: /srv/www/static
               name: staticfiles

@@ -18,6 +18,9 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.annotations['argocd-app-prefix']
+          envFrom:
+            - secretRef:
+                name: portal-secret-env
 
         - image: jarosenb/k3s-test-django
           imagePullPolicy: Always
@@ -34,10 +37,9 @@ spec:
                   fieldPath: metadata.annotations['argocd-app-prefix']
 
             - name: RABBITMQ_DEFAULT_USER
-              valueFrom:
-                secretKeyRef:
-                  name: portal-secret-env
-                  key: RABBITMQ_DEFAULT_USER
+          envFrom:
+            - secretRef:
+                name: portal-secret-env
 
       containers:
         - image: jarosenb/k3s-test-django
@@ -51,6 +53,9 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.annotations['argocd-app-prefix']
+          envFrom:
+            - secretRef:
+                name: portal-secret-env
       volumes:
         - name: staticfiles
           persistentVolumeClaim:
