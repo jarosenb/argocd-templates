@@ -23,7 +23,25 @@ spec:
       containers:
         - image: redis:8.6
           name: redis
+          args:
+            - --appendonly
+            - "yes"
+            - --requirepass
+            - $(REDIS_PASSWORD)
           ports:
             - containerPort: 6379
               protocol: TCP
+          env:
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: portal-secret-env
+                  key: REDIS_PASSWORD
+          volumeMounts:
+            - mountPath: /data
+              name: redis-data
       restartPolicy: Always
+      volumes:
+        - name: redis-data
+          persistentVolumeClaim:
+            claimName: redis-data
