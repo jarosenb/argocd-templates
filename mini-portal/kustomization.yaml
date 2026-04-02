@@ -7,6 +7,7 @@ components:
   - components/worker
   - components/postgres
   - components/redis
+  - components/rabbitmq
 
 namePrefix: miniportal-
 commonAnnotations:
