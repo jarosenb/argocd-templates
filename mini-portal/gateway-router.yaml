@@ -32,6 +32,15 @@ spec:
   hostnames:
     - k3s-local.test
   rules:
+    # WebSocket traffic
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /ws
+      backendRefs:
+        - name: websocket
+          port: 9000
+
     # Regular HTTP traffic
     - matches:
         - path:
