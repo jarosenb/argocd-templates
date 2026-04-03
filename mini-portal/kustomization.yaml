@@ -12,6 +12,7 @@ components:
   - components/redis
   - components/rabbitmq
   - components/memcached
+  - components/websocket
 
 namePrefix: miniportal-
 commonAnnotations:
