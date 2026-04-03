@@ -11,6 +11,7 @@ components:
   - components/postgres
   - components/redis
   - components/rabbitmq
+  - components/memcached
 
 namePrefix: miniportal-
 commonAnnotations:
