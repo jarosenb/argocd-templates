@@ -25,7 +25,13 @@ spec:
       labels:
         io.kompose.service: webapp
     spec:
-      containers: []
+      containers:
+        - image: jarosenb/k3s-test-django
+          name: webapp
+
+        - image: nginx:alpine
+          name: nginx
+
       restartPolicy: Always
       volumes:
         - name: staticfiles
