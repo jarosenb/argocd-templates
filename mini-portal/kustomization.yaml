@@ -1,5 +1,5 @@
 resources:
-  - overlays/web
+  - bases/web
   - sealed-portal-secret-env.yaml
   - tls-secret.yaml
   - gateway-router.yaml
