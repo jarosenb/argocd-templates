@@ -27,7 +27,7 @@ spec:
             - uv
             - run
             - uvicorn
-            - webapp.asgi:applications
+            - webapp.asgi:application
             - --port
             - "9000"
             - --host
