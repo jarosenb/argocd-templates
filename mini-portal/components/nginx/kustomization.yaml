@@ -11,7 +11,7 @@ configMapGenerator:
       - nginx.conf
 
 patches:
-  - path: patch.yaml
+  - path: nginx-deployment-patch.yaml
     target:
       kind: Deployment
       name: webapp
